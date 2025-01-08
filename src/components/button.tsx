@@ -85,16 +85,16 @@ export function Button({
    * Maintains consistent spacing ratios across different sizes.
    */
   const sizeStyles: SizeStyles = {
-    lg: "py-3 px-4",
-    md: "py-2 px-3",
-    sm: "py-1 px-2",
+    lg: "py-2 px-3 text-base",
+    md: "py-1 px-3 text-sm",
+    sm: "py-1 px-2 text-sm",
   };
 
   return (
     <button
       onClick={onClick}
       className={clsx(
-        // Base styles applied to all buttons
+        "font-medium",
         "transition-all duration-200 ease-out", // Smooth hover/active transitions
         "rounded cursor-pointer", // Visual interaction hints
         variantStyles[variant], // Variant-specific styles
