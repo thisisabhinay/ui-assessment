@@ -1,0 +1,312 @@
+diff --git a/diff b/diff
+new file mode 100644
+index 0000000..e69de29
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000..d61e040
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,13 @@
++<!DOCTYPE html>
++<html lang="en">
++  <head>
++    <meta charset="UTF-8" />
++    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
++    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++    <title>Vite + React + Tailwind + TS</title>
++  </head>
++  <body>
++    <div id="root"></div>
++    <script type="module" src="/src/main.tsx"></script>
++  </body>
++</html>
+diff --git a/package.json b/package.json
+new file mode 100644
+index 0000000..dada090
+--- /dev/null
++++ b/package.json
+@@ -0,0 +1,32 @@
++{
++  "name": "react-vite-ts",
++  "private": true,
++  "version": "0.0.0",
++  "type": "module",
++  "scripts": {
++    "dev": "vite",
++    "build": "tsc && vite build",
++    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
++    "preview": "vite preview"
++  },
++  "dependencies": {
++    "clsx": "2.1.1",
++    "react": "^19.0.0",
++    "react-dom": "^19.0.0"
++  },
++  "devDependencies": {
++    "@types/react": "^19.0.0",
++    "@types/react-dom": "^19.0.0",
++    "@typescript-eslint/eslint-plugin": "^8.17.0",
++    "@typescript-eslint/parser": "^8.17.0",
++    "@vitejs/plugin-react": "^4.3.4",
++    "autoprefixer": "10.4.20",
++    "eslint": "^9.16.0",
++    "eslint-plugin-react-hooks": "^5.1.0",
++    "eslint-plugin-react-refresh": "^0.4.16",
++    "postcss": "8.4.49",
++    "tailwindcss": "3.4.16",
++    "typescript": "^5.7.2",
++    "vite": "^6.0.3"
++  }
++}
+diff --git a/postcss.config.js b/postcss.config.js
+new file mode 100644
+index 0000000..2e7af2b
+--- /dev/null
++++ b/postcss.config.js
+@@ -0,0 +1,6 @@
++export default {
++  plugins: {
++    tailwindcss: {},
++    autoprefixer: {},
++  },
++}
+diff --git a/public/vite.svg b/public/vite.svg
+new file mode 100644
+index 0000000..e7b8dfb
+--- /dev/null
++++ b/public/vite.svg
+@@ -0,0 +1 @@
++<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+\ No newline at end of file
+diff --git a/sandbox/README.md b/sandbox/README.md
+new file mode 100644
+index 0000000..6bb903e
+--- /dev/null
++++ b/sandbox/README.md
+@@ -0,0 +1,8 @@
++# React + Tailwind
++
++This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules. One top of the standard Vite setup, [tailwindcss](https://tailwindcss.com/) is installed and ready to be used in React components.
++
++Additional references:
++* [Getting started with Vite](https://vitejs.dev/guide/)
++* [Tailwind documentation](https://tailwindcss.com/docs/installation)
++
+diff --git a/src/App.tsx b/src/App.tsx
+new file mode 100644
+index 0000000..6bffe61
+--- /dev/null
++++ b/src/App.tsx
+@@ -0,0 +1,17 @@
++import { useState } from "react";
++import {ContactsPage} from "./page/contacts"
++
++function App() {
++  const [count, setCount] = useState(0);
++
++  return (
++    <div id="page" className="grid grid-cols-[240px_1fr] h-screen">
++      <aside id="sidebar" className="relative z-20 h-full border-r border-slate-200">Sidebar</aside>
++      <main className="h-full relative z-10">
++        <ContactsPage/>
++      </main>
++    </div>
++  );
++}
++
++export default App;
+diff --git a/src/components/button.tsx b/src/components/button.tsx
+new file mode 100644
+index 0000000..be67e2c
+--- /dev/null
++++ b/src/components/button.tsx
+@@ -0,0 +1,10 @@
++
++import clsx from 'clsx';
++
++export function Button({children, variant="primary", className}) {
++    const variantTable = {
++        primary: "bg-purple-500 text-white",
++        secondary: "bg-white text-purple-500 border border-purple-500",
++    }
++    return <button className={clsx("rounded py-2 px-3", variantTable[variant] , className)} >{children}</button>
++}
+\ No newline at end of file
+diff --git a/src/components/card-metrics.tsx b/src/components/card-metrics.tsx
+new file mode 100644
+index 0000000..771e683
+--- /dev/null
++++ b/src/components/card-metrics.tsx
+@@ -0,0 +1,10 @@
++
++import clsx from 'clsx';
++import {Button} from "./button"
++import {InputText} from "./input-text"
++
++export function CardMetrics({placeholder, className, size}) {
++    return (
++        <div data-comp="CardMetrics"/>
++    )
++}
+\ No newline at end of file
+diff --git a/src/components/header.tsx b/src/components/header.tsx
+new file mode 100644
+index 0000000..cfd6c1e
+--- /dev/null
++++ b/src/components/header.tsx
+@@ -0,0 +1,17 @@
++
++import clsx from 'clsx';
++import {Button} from "./button"
++import {InputText} from "./input-text"
++
++export function Header({placeholder, className, size}) {
++    return (
++        <header className="bg-white p-7 shadow-md border-b border-slate-200 justify-between w-full grid md:grid-cols-[auto_1fr_auto] gap-3 md:gap-10">
++            <h1 className="text-2xl md:text-3xl font-medium">Contacts</h1>
++            <InputText placeholder="Search contacts" />
++            <div className="flex items-center gap-3">
++                <Button>New</Button>
++                <Button variant="secondary">Import...</Button>
++            </div>
++        </header>
++    )
++}
+\ No newline at end of file
+diff --git a/src/components/input-text.tsx b/src/components/input-text.tsx
+new file mode 100644
+index 0000000..fd46313
+--- /dev/null
++++ b/src/components/input-text.tsx
+@@ -0,0 +1,6 @@
++
++import clsx from 'clsx';
++
++export function InputText({placeholder, className, size}) {
++    return <input type="text" className={clsx("shadow w-full border border-slate-200", className, size === "sm" ? "py-1 px-2": "py-2 px-3")} placeholder={placeholder} />
++}
+\ No newline at end of file
+diff --git a/src/index.css b/src/index.css
+new file mode 100644
+index 0000000..b5c61c9
+--- /dev/null
++++ b/src/index.css
+@@ -0,0 +1,3 @@
++@tailwind base;
++@tailwind components;
++@tailwind utilities;
+diff --git a/src/main.tsx b/src/main.tsx
+new file mode 100644
+index 0000000..f25366e
+--- /dev/null
++++ b/src/main.tsx
+@@ -0,0 +1,10 @@
++import React from "react";
++import ReactDOM from "react-dom/client";
++import App from "./App.tsx";
++import "./index.css";
++
++ReactDOM.createRoot(document.getElementById("root")!).render(
++  <React.StrictMode>
++    <App />
++  </React.StrictMode>,
++);
+diff --git a/src/page/contacts.tsx b/src/page/contacts.tsx
+new file mode 100644
+index 0000000..c23ace3
+--- /dev/null
++++ b/src/page/contacts.tsx
+@@ -0,0 +1,11 @@
++import { Header } from "../components/header";
++
++export function ContactsPage() {
++    return(
++        <div id="ContactsPage" className="grid grid-cols-1 auto-rows-max gap-0">
++            <Header/>
++            <section id="metrics" className="bg-slate-100"></section>
++            <section id="main-body"></section>
++        </div>
++    )
++}
+\ No newline at end of file
+diff --git a/src/vite-env.d.ts b/src/vite-env.d.ts
+new file mode 100644
+index 0000000..11f02fe
+--- /dev/null
++++ b/src/vite-env.d.ts
+@@ -0,0 +1 @@
++/// <reference types="vite/client" />
+diff --git a/tailwind.config.js b/tailwind.config.js
+new file mode 100644
+index 0000000..614c86b
+--- /dev/null
++++ b/tailwind.config.js
+@@ -0,0 +1,8 @@
++/** @type {import('tailwindcss').Config} */
++export default {
++  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
++  theme: {
++    extend: {},
++  },
++  plugins: [],
++};
+diff --git a/tsconfig.json b/tsconfig.json
+new file mode 100644
+index 0000000..a7fc6fb
+--- /dev/null
++++ b/tsconfig.json
+@@ -0,0 +1,25 @@
++{
++  "compilerOptions": {
++    "target": "ES2020",
++    "useDefineForClassFields": true,
++    "lib": ["ES2020", "DOM", "DOM.Iterable"],
++    "module": "ESNext",
++    "skipLibCheck": true,
++
++    /* Bundler mode */
++    "moduleResolution": "bundler",
++    "allowImportingTsExtensions": true,
++    "resolveJsonModule": true,
++    "isolatedModules": true,
++    "noEmit": true,
++    "jsx": "react-jsx",
++
++    /* Linting */
++    "strict": true,
++    "noUnusedLocals": true,
++    "noUnusedParameters": true,
++    "noFallthroughCasesInSwitch": true
++  },
++  "include": ["src"],
++  "references": [{ "path": "./tsconfig.node.json" }]
++}
+diff --git a/tsconfig.node.json b/tsconfig.node.json
+new file mode 100644
+index 0000000..42872c5
+--- /dev/null
++++ b/tsconfig.node.json
+@@ -0,0 +1,10 @@
++{
++  "compilerOptions": {
++    "composite": true,
++    "skipLibCheck": true,
++    "module": "ESNext",
++    "moduleResolution": "bundler",
++    "allowSyntheticDefaultImports": true
++  },
++  "include": ["vite.config.ts"]
++}
+diff --git a/vite.config.ts b/vite.config.ts
+new file mode 100644
+index 0000000..9cc50ea
+--- /dev/null
++++ b/vite.config.ts
+@@ -0,0 +1,7 @@
++import { defineConfig } from "vite";
++import react from "@vitejs/plugin-react";
++
++// https://vitejs.dev/config/
++export default defineConfig({
++  plugins: [react()],
++});
