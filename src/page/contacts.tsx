@@ -1,6 +1,8 @@
 import { Button } from "../components/button";
+import { CardMetrics } from "../components/card-metrics";
 import { Header } from "../components/header";
 import { InputText } from "../components/input-text";
+import { contactsMetrics } from "../data/metrics";
 
 export function ContactsPage() {
   return (
@@ -14,7 +16,13 @@ export function ContactsPage() {
           </div>
         </div>
       </Header>
-      <section id="metrics" className="bg-slate-100"></section>
+      <section id="metrics" className="bg-slate-100 p-5">
+        <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row items-center gap-5 justify-center">
+          {contactsMetrics?.map((metrics, index) => (
+            <CardMetrics key={index} {...metrics} />
+          ))}
+        </div>
+      </section>
       <section id="main-body"></section>
     </div>
   );
