@@ -20,7 +20,12 @@ import clsx from "clsx";
 import { type MouseEventHandler, type ReactNode } from "react";
 
 // Define the supported button variants for type safety and autocompletion
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "link";
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "dotted"
+  | "ghost"
+  | "link";
 
 // Define the supported button sizes for type safety and autocompletion
 export type ButtonSize = "lg" | "md" | "sm";
@@ -68,14 +73,17 @@ export function Button({
   /**
    * Defines the visual styles for each button variant using Tailwind CSS classes.
    * - primary: Purple background with white text
-   * - secondary: White background with purple text and border
+   * - secondary: Transparent background with purple text and border
    * - ghost: Similar to secondary but with different hover behavior
+   * - dotted: Transparent background with purple text and dashed border
    * - link: Text-only appearance with hover effect and no padding
    */
   const variantStyles: VariantStyles = {
     primary: "bg-purple-500 text-white",
-    secondary: "bg-white text-purple-500 border border-purple-500",
+    secondary: "bg-tranpsarent text-purple-500 border border-purple-500",
     link: "text-slate-800 hover:text-purple-500 border-none !p-0",
+    dotted:
+      "bg-tranpsarent text-purple-500 border border-dashed border-purple-500",
     ghost:
       "bg-white hover:bg-purple-100 text-slate-800 hover:text-purple-500 border-none",
   };

@@ -25,7 +25,7 @@ export function CardMetrics({
     <div
       data-comp="CardMetrics"
       className={clsx(
-        "flex items-start justify-between",
+        "flex flex-col-reverse sm:flex-row items-start justify-between gap-2",
         "bg-white p-5 w-full rounded-md",
         "shadow-lg shadow-slate-300",
         className,
@@ -34,7 +34,7 @@ export function CardMetrics({
       <div className="flex flex-col gap-1">
         <div className="text-xs">{label}</div>
         <div className="flex items-center gap-2">
-          <div className={clsx("text-lg font-medium")}>{value}</div>
+          <div className={clsx("text-xl font-medium")}>{value}</div>
           <div
             className={clsx(
               "text-xs",
